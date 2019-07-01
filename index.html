@@ -11,11 +11,9 @@
 <body>
 
     <div id="app">
-        <ul>
-            <li v-for="number in 10" v-if="number % 2 === 0">
-                <span >5 x {{ number}} = {{ 5 * number  }}</span>
-            </li>
-        </ul>
+        <button v-on:click="upCounter">Up </button> 
+        <button @click="downCounter">Down </button>
+        {{ counter }}
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -23,6 +21,15 @@
         var app = new Vue({
             el: "#app",
             data: {
+                counter: 0
+            },
+            methods: {
+                upCounter() {
+                    this.counter++
+                },
+                downCounter() {
+                    this.counter--
+                }
             }
         });
     </script>
