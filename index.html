@@ -9,9 +9,10 @@
 <body>
 
     <div id="app">
-        <span v-bind:title="message">ABC</span>
-        <span :title="message">ABC</span>
-        {{ message.toUpperCase() }}
+        <!-- Remove o elemento -->
+        <span v-if="isVisible">Hello</span> 
+        <!-- Oculta o elemento -->
+        <span v-show="isVisible">Hello</span>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js" ></script>
@@ -19,7 +20,7 @@
         var app = new Vue({
             el: "#app",
             data: {
-                message: "Hello World!"
+                isVisible: true
             }
         });
     </script>
