@@ -11,13 +11,7 @@
 <body>
 
     <div id="app">
-        <ul v-for="(item, index) in list" :key="index">
-            <li>{{index}} - {{item.text}}</li>
-        </ul>
-
-        <ul v-for="number in 5">
-            <li>{{number}}</li>
-        </ul>
+        <div v-html="myHTML"></div>
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -25,11 +19,7 @@
         var app = new Vue({
             el: "#app",
             data: {
-                list: [
-                    { text: "item 1" },
-                    { text: "item 2" },
-                    { text: "item 3" },
-                ]
+                myHTML: '<input type="text" />'
             }
         });
     </script>
