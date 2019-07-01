@@ -11,19 +11,22 @@
 <body>
 
     <div id="app">
-        {{ title | upper }}
+        <button @click="isFilterOn = !isFilterOn">Click me</button>
+        {{ title | myFilter(isFilterOn) }}
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
-        Vue.filter("upper", text => text.toUpperCase());
-
-        // Vue.filter("upper")("Hello");
-        
         var app = new Vue({
             el: "#app",
             data: {
-                title: "Leonardo"
+                title: "Leonardo",
+                isFilterOn: true
+            },
+            filters: {
+                myFilter(text, isOn){
+                    return isOn ? text.replace(/[aeiou]/g, "") : text;
+                }
             }
         });
 
