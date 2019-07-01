@@ -9,7 +9,9 @@
 <body>
 
     <div id="app">
-        {{ message }}
+        <span v-bind:title="message">ABC</span>
+        <span :title="message">ABC</span>
+        {{ message.toUpperCase() }}
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js" ></script>
@@ -18,21 +20,8 @@
             el: "#app",
             data: {
                 message: "Hello World!"
-            },
-            created: function() {
-                console.log("Starting app");
             }
-
-            /*
-            Life cycle
-                beforeCreate → created → beforeMount 
-                → mounted → beforeUpdate → updated 
-                → beforeDestroy → destroyed
-            */
         });
-
-        
-
     </script>
 </body>
 </html>
