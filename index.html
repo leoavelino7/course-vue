@@ -18,7 +18,17 @@
             el: "#app",
             data: {
                 message: "Hello World!"
+            },
+            created: function() {
+                console.log("Starting app");
             }
+
+            /*
+            Life cycle
+                beforeCreate → created → beforeMount 
+                → mounted → beforeUpdate → updated 
+                → beforeDestroy → destroyed
+            */
         });
 
         
