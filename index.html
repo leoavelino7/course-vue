@@ -32,6 +32,23 @@
                 }
             }
         });
+
+        app.$on("up", app.upCounter);
+        app.$on("down", app.downCounter);
+        app.$once("onceDown", app.downCounter);
+
+        var interval = setInterval(() => {
+            app.$emit("up");
+        }, 1000);
+
+        setTimeout(() => {
+            clearInterval(interval);
+            app.$off("up");
+        }, 5000);
+
+        setTimeout(() => {
+            app.$emit("onceDown");
+        }, 6000);
     </script>
 </body>
 
