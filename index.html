@@ -11,28 +11,23 @@
 <body>
 
     <div id="app">
-        {{ title | upper | reverse | cut(5, 8)}}
+        {{ title | upper }}
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
+        Vue.filter("upper", text => text.toUpperCase());
+
+        // Vue.filter("upper")("Hello");
+        
         var app = new Vue({
             el: "#app",
             data: {
                 title: "Leonardo"
-            },
-            filters: {
-                upper(text){
-                    return text.toUpperCase();
-                },
-                reverse(text) {
-                    return text.split('').reverse().join('');
-                },
-                cut(text, index1, index2) {
-                    return text.substring(index1, index2);
-                }
             }
         });
+
+
     </script>
 </body>
 
