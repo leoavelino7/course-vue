@@ -11,44 +11,35 @@
 <body>
 
     <div id="app">
-        <button v-on:click="upCounter">Up </button> 
-        <button @click="downCounter">Down </button>
-        {{ counter }}
+        <button v-on:click="sendValue">Click me</button> 
+    </div>
+
+    <div id="app2">
+        <hr />
+        My value = {{ myValue }}
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
         var app = new Vue({
             el: "#app",
-            data: {
-                counter: 0
-            },
             methods: {
-                upCounter() {
-                    this.counter++
-                },
-                downCounter() {
-                    this.counter--
+                sendValue() {
+                    app2.$emit("sendValue", 555);
                 }
             }
         });
 
-        app.$on("up", app.upCounter);
-        app.$on("down", app.downCounter);
-        app.$once("onceDown", app.downCounter);
+        var app2 = new Vue({
+            el: "#app2",
+            data: {
+                myValue: ""
+            }
+        });
 
-        var interval = setInterval(() => {
-            app.$emit("up");
-        }, 1000);
-
-        setTimeout(() => {
-            clearInterval(interval);
-            app.$off("up");
-        }, 5000);
-
-        setTimeout(() => {
-            app.$emit("onceDown");
-        }, 6000);
+        app2.$on("sendValue", function(value){
+            this.myValue = value;
+        });
     </script>
 </body>
 
