@@ -11,34 +11,27 @@
 <body>
 
     <div id="app">
-        <button v-on:click="sendValue">Click me</button> 
-    </div>
-
-    <div id="app2">
-        <hr />
-        My value = {{ myValue }}
+        {{ title | upper | reverse | cut(5, 8)}}
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
         var app = new Vue({
             el: "#app",
-            methods: {
-                sendValue() {
-                    app2.$emit("sendValue", 555);
+            data: {
+                title: "Leonardo"
+            },
+            filters: {
+                upper(text){
+                    return text.toUpperCase();
+                },
+                reverse(text) {
+                    return text.split('').reverse().join('');
+                },
+                cut(text, index1, index2) {
+                    return text.substring(index1, index2);
                 }
             }
-        });
-
-        var app2 = new Vue({
-            el: "#app2",
-            data: {
-                myValue: ""
-            }
-        });
-
-        app2.$on("sendValue", function(value){
-            this.myValue = value;
         });
     </script>
 </body>
