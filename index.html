@@ -11,27 +11,45 @@
 <body>
 
     <div id="app">
-
-        <h2>{{ question }}</h2>
-        <h4>{{ answer }}</h4>
+        <my-component></my-component>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
-        var app = new Vue({
-            el: "#app",
-            data: {
-                question: "",
-                answer: ""
+        Vue.component("my-component", {
+            template: `
+            <div>    
+                <div>
+                    <slot></slot> 
+                    {{ counter }}
+                    <button @click="upCounter">Click me</button>
+                </div>
+                <div>
+                    {{ lessThanCounter }}
+                </div>
+            </div>
+            `,
+            data() {
+                return { counter: 0 }
             },
-            watch: {
-                question(value){
-                    this.answer = "Thinking...";
-                    setTimeout(() => {
-                        this.answer = "Yes";
-                    }, 2000);
+            methods: {
+                upCounter() {
+                    this.counter++;
                 }
+            },
+            computed: {
+              lessThanCounter() {
+                    let array = [];
+                    for(i = this.counter - 1; i >= 0; i--) {
+                        array.push(i);
+                    }
+                    return array;
+              }  
             }
+        });
+
+        var app = new Vue({
+            el: "#app"
         });
     </script>
 </body>
