@@ -11,7 +11,7 @@
 <body>
 
     <div id="app">
-        <my-component @change="onUpCounter"></my-component>
+        <my-component ref="mc" @change="onUpCounter"></my-component>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
@@ -42,6 +42,7 @@
             }
         });
 
+        console.log(app.$refs.mc);
 
     </script>
 </body>
