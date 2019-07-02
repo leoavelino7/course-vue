@@ -12,21 +12,17 @@
 
     <div id="app">
         <div>
-            <input v-model="name" type="text" />
-            {{ name }}
+            <input type="checkbox" value="A" v-model="myList" />
+            <input type="checkbox" value="B" v-model="myList" />
+            <input type="checkbox" value="C" v-model="myList" />
+            {{ myList }}
         </div>
+        <hr/>
         <div>
-            <input v-model.number="number" type="text" />
-            {{ number }}
+            <input type="checkbox" :true-value="'A'" :false-value="'B'" v-model="myCheck" />
+            {{ myCheck }}
         </div>
-        <div>
-            <input v-model.trim="trim" type="text" />
-            {{ trim }}
-        </div>
-        <div>
-            <input v-model.lazy="lazy" type="text" />
-            {{ lazy }}
-        </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
@@ -34,10 +30,8 @@
         var app = new Vue({
             el: "#app",
             data: {
-                name: "    Leonardo    ",
-                number: 12345,
-                trim: "   Leonardo   ",
-                lazy: ""
+                myList: [],
+                myCheck: null
             }
         });
     </script>
