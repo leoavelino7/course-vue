@@ -11,34 +11,28 @@
 <body>
 
     <div id="app">
-        <my-component></my-component>
-        <div is="my-component"></div>
+        <my-component name="Leonardo"></my-component>
+        <my-component my-name="Leonardo"></my-component>
+        <my-component :name="text"></my-component>
 
         
-        <!-- <table>
-            <tr is="my-tr"></tr>
-        </table> -->
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
-        var myData = {
-            title: "Leonardo"
-        }
-
         Vue.component("my-component", {
             template: `
-                <div>{{title}}</div>
+                <div>{{name}}</div>
             `,
-            data(){
-                return {
-                    title: "Bye!"
-                }
-            }
+            props: ["name", "myName"] // As propriedades são apenas para leitura
+            
         });
 
         var app = new Vue({
-            el: "#app"
+            el: "#app",
+            data: {
+                text: "Developer"
+            }
         });
 
 
