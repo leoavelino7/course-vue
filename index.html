@@ -11,39 +11,37 @@
 <body>
 
     <div id="app">
-        <div>
-            <input v-model="text" type="text" />
-            <ul>
-                <li v-for="char in letters">
-                    {{ char }}
-                </li>
-            </ul>
-        </div>
-        <hr/>
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
 
+        <hr />
+
+        <router-view></router-view>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router" ></script>
+
     <script>
+
+        const Home = {
+            template: `<div>Home page</div>`
+        };
+
+        const About = {
+            template: `<div>About page</div>`
+        };
+
+        const routes = [
+            { path: "/", component: Home},
+            { path: "/about", component: About}
+        ]
+
+        const router = new VueRouter({routes});
+
         var app = new Vue({
             el: "#app",
-            data: {
-                text: ""
-            },
-            computed: {
-                letters() {
-                    var letters = [];
-                    var text = this.text.split('');
-                    
-                    text.forEach(char => {
-                        if(!letters.includes(char)){
-                            letters.push(char);
-                        }
-                    });
-
-                    return letters.sort();
-                }
-            }
+            router
         });
     </script>
 </body>
