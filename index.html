@@ -11,23 +11,34 @@
 <body>
 
     <div id="app">
-        <button @click="isFilterOn = !isFilterOn">Click me</button>
-        {{ title | myFilter(isFilterOn) }}
+        <my-component></my-component>
+        <div is="my-component"></div>
+
+        
+        <!-- <table>
+            <tr is="my-tr"></tr>
+        </table> -->
     </div>
 
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script>
-        var app = new Vue({
-            el: "#app",
-            data: {
-                title: "Leonardo",
-                isFilterOn: true
-            },
-            filters: {
-                myFilter(text, isOn){
-                    return isOn ? text.replace(/[aeiou]/g, "") : text;
+        var myData = {
+            title: "Leonardo"
+        }
+
+        Vue.component("my-component", {
+            template: `
+                <div>{{title}}</div>
+            `,
+            data(){
+                return {
+                    title: "Bye!"
                 }
             }
+        });
+
+        var app = new Vue({
+            el: "#app"
         });
 
 
