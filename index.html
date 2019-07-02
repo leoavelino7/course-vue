@@ -11,27 +11,35 @@
 <body>
 
     <div id="app">
-        <my-component name="Leonardo" my-number='05'></my-component>
-        
+        <my-component @change="onUpCounter"></my-component>
     </div>
 
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
         Vue.component("my-component", {
             template: `
                 <div>
-                    {{myNumber}} - {{name}}
+                    <button @click="upCounter">Click me</button> - {{ counter }}
                 </div>
             `,
-            props: {
-                name: String,
-                myNumber: [Number, String]
-                // String Number Boolean Function Object Array
+            data() {
+                return { counter: 0 }
+            },
+            methods: {
+                upCounter() {
+                    this.counter++;
+                    this.$emit("change", this.counter);
+                }
             }
         });
 
         var app = new Vue({
-            el: "#app"
+            el: "#app",
+            methods: {
+                onUpCounter(value) {
+                    console.log("new value", value);
+                }
+            }
         });
 
 
