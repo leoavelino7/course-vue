@@ -11,40 +11,14 @@
 <body>
 
     <div id="app">
-        <my-component></my-component>
+        <input v-hello type="text" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
-        Vue.component("my-component", {
-            template: `
-            <div>    
-                <div>
-                    <slot></slot> 
-                    {{ counter }}
-                    <button @click="upCounter">Click me</button>
-                </div>
-                <div>
-                    {{ lessThanCounter }}
-                </div>
-            </div>
-            `,
-            data() {
-                return { counter: 0 }
-            },
-            methods: {
-                upCounter() {
-                    this.counter++;
-                }
-            },
-            computed: {
-              lessThanCounter() {
-                    let array = [];
-                    for(i = this.counter - 1; i >= 0; i--) {
-                        array.push(i);
-                    }
-                    return array;
-              }  
+        Vue.directive("hello", {
+            inserted(el){
+                el.value = "Hello World!"
             }
         });
 
