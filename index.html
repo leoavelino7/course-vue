@@ -48,7 +48,7 @@
         };
 
         const routes = [
-            { path: "/", component: Home},
+            { path: "/", component: Home, beforeEnter: (to, from, next) => {next(false)}},
             { path: "/about/", component: About,
                 children: [
                     { path: "", component: SubAbout1},
@@ -58,6 +58,13 @@
         ];
 
         const router = new VueRouter({routes});
+
+        /*
+        // Global
+        router.beforeEach((to, from, next) => {
+
+        });
+        */
 
         var app = new Vue({
             el: "#app",
