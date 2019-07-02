@@ -11,9 +11,9 @@
 <body>
 
     <div id="app">
-        <router-link to="">Home</router-link>
-        <router-link to="/about/company/">About</router-link>
-
+        <router-link to="/">Home</router-link>
+        <router-link to="/about/">About</router-link>
+        
         <hr />
 
         <router-view></router-view>
@@ -29,17 +29,32 @@
         };
 
         const About = {
-            template: `<div>About page - {{ $route.params.name}}</div>`
+            template: `<div>
+                About page 
+                <router-link to="/about/">Subabout1</router-link>
+                <router-link to="/about/subabout2/">Subabout2</router-link>
+
+                <hr/>  
+                <router-view></router-view>
+            </div>`
         };
 
-        const AboutCompany = {
-            template: `<div>About company page</div>`
+        const SubAbout1 = {
+            template: `<div>SubAbout1</div>`
+        };
+
+        const SubAbout2 = {
+            template: `<div>SubAbout2</div>`
         };
 
         const routes = [
             { path: "/", component: Home},
-            { path: "/about/company", component: AboutCompany},
-            { path: "/about/:name", component: About}
+            { path: "/about/", component: About,
+                children: [
+                    { path: "", component: SubAbout1},
+                    { path: "subabout2/", component: SubAbout2}
+                ]
+            }
         ];
 
         const router = new VueRouter({routes});
