@@ -11,10 +11,7 @@
 <body>
 
     <div id="app">
-        <my-component name="Leonardo"></my-component>
-        <my-component my-name="Leonardo"></my-component>
-        <my-component :name="text"></my-component>
-
+        <my-component name="Leonardo" my-number='05'></my-component>
         
     </div>
 
@@ -22,17 +19,19 @@
     <script>
         Vue.component("my-component", {
             template: `
-                <div>{{name}}</div>
+                <div>
+                    {{myNumber}} - {{name}}
+                </div>
             `,
-            props: ["name", "myName"] // As propriedades são apenas para leitura
-            
+            props: {
+                name: String,
+                myNumber: [Number, String]
+                // String Number Boolean Function Object Array
+            }
         });
 
         var app = new Vue({
-            el: "#app",
-            data: {
-                text: "Developer"
-            }
+            el: "#app"
         });
 
 
