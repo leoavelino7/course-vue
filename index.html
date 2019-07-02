@@ -11,7 +11,11 @@
 <body>
 
     <div id="app">
-        <my-component ref="mc" @change="onUpCounter"></my-component>
+        <my-component>
+            <span slot="work">Development</span>
+            <span slot="name">Leonardo</span>
+        </my-component>
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
@@ -19,30 +23,17 @@
         Vue.component("my-component", {
             template: `
                 <div>
-                    <button @click="upCounter">Click me</button> - {{ counter }}
+                    <slot name="name"></slot>
+                    <span>is</span>
+                    <slot name="work"></slot>
                 </div>
-            `,
-            data() {
-                return { counter: 0 }
-            },
-            methods: {
-                upCounter() {
-                    this.counter++;
-                    this.$emit("change", this.counter);
-                }
-            }
+            `
         });
 
         var app = new Vue({
-            el: "#app",
-            methods: {
-                onUpCounter(value) {
-                    console.log("new value", value);
-                }
-            }
+            el: "#app"
         });
 
-        console.log(app.$refs.mc);
 
     </script>
 </body>
