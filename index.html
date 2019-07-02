@@ -12,7 +12,8 @@
 
     <div id="app">
 
-        {{ fullName }}
+        <h2>{{ question }}</h2>
+        <h4>{{ answer }}</h4>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
@@ -20,24 +21,18 @@
         var app = new Vue({
             el: "#app",
             data: {
-                firstName: "Leonardo",
-                lastName: "Development"
+                question: "",
+                answer: ""
             },
-            computed: {
-                fullName: {
-                    get(){ return `${this.firstName} ${this.lastName}`},
-                    set(newValue){
-                        let names = newValue.split(" ");
-                        this.firstName = names[0];
-                        this.lastName = names[1];
-                    } 
-
+            watch: {
+                question(value){
+                    this.answer = "Thinking...";
+                    setTimeout(() => {
+                        this.answer = "Yes";
+                    }, 2000);
                 }
             }
         });
-
-
-        app.fullName = "Curso Vue";
     </script>
 </body>
 
