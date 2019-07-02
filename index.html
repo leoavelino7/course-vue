@@ -12,16 +12,12 @@
 
     <div id="app">
         <div>
-            <input type="checkbox" value="A" v-model="myList" />
-            <input type="checkbox" value="B" v-model="myList" />
-            <input type="checkbox" value="C" v-model="myList" />
-            {{ myList }}
+            <input type="radio" value="A" v-model="myRadio" />
+            <input type="radio" value="B" v-model="myRadio" />
+            <input type="radio" value="C" v-model="myRadio" />
+            {{ myRadio }}
         </div>
         <hr/>
-        <div>
-            <input type="checkbox" :true-value="'A'" :false-value="'B'" v-model="myCheck" />
-            {{ myCheck }}
-        </div>
 
     </div>
 
@@ -30,8 +26,7 @@
         var app = new Vue({
             el: "#app",
             data: {
-                myList: [],
-                myCheck: null
+                myRadio: ''
             }
         });
     </script>
