@@ -11,29 +11,20 @@
 <body>
 
     <div id="app">
-        <input v-hello type="text" />
+        <input v-color="color" type="text" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
-        Vue.directive("hello", {
-            bind(el) {
-                console.log("bind", el);
-            },
-            inserted(el){
-                el.value = "Hello World!"
-                console.log("insert", el);
-            },
-            update(el) {
-                console.log("update", el);
-            },
-            componentUpdated(el) {
-                console.log("componentUpdated", el);
-            }
+        Vue.directive("color", function(el, binding){
+            el.style.background = binding.value
         });
 
         var app = new Vue({
-            el: "#app"
+            el: "#app",
+            data: {
+                color: 'red'
+            }
         });
     </script>
 </body>
