@@ -11,20 +11,21 @@
 <body>
 
     <div id="app">
-        <input v-color="color" type="text" />
+        <input v-rotate-on-click type="text" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
-        Vue.directive("color", function(el, binding){
-            el.style.background = binding.value
+        Vue.directive("rotate-on-click", function(el, binding){
+            var angle = 0;
+            el.addEventListener("click", function(){
+                angle += 90;
+                el.style.transform = `rotateZ(${angle}deg)`; 
+            })
         });
 
         var app = new Vue({
-            el: "#app",
-            data: {
-                color: 'red'
-            }
+            el: "#app"
         });
     </script>
 </body>
