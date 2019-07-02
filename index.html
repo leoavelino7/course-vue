@@ -11,48 +11,22 @@
 <body>
 
     <div id="app">
-        <my-component>
-            <input type="text" />
-        </my-component>
 
-        <my-component>
-            <ul>
-                <li>Item 1</li>
-                <li>Item 2</li>
-                <li>Item 3</li>
-            </ul>
-        </my-component>
-        
+        {{ fullName }}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
-        Vue.component("my-component", {
-            template: `
-                <div>
-                    <button @click="rotate">Rotate</button>
-                    <div ref="myElement">
-                        <slot></slot>
-                    </div>
-                </div>
-            `,
-            data(){
-                return {
-                    angle: 0
-                }
-            },
-            methods: {
-                rotate() {
-                    this.angle += 90;
-                    this.$refs.myElement.style.transform = `rotate(${this.angle}deg)`;
-                }
-            }
-        });
-
         var app = new Vue({
             el: "#app",
             data: {
-                myText: "Design"
+                firstName: "Leonardo",
+                lastName: "Development"
+            },
+            computed: {
+                fullName() {
+                    return `${this.firstName} ${this.lastName}`;
+                }
             }
         });
 
