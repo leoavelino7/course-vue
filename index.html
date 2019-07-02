@@ -11,21 +11,34 @@
 <body>
 
     <div id="app">
-        <input v-rotate-on-click type="text" />
+        <div>
+            <input v-model="name" type="text" />
+            {{ name }}
+        </div>
+        <div>
+            <input v-model.number="number" type="text" />
+            {{ number }}
+        </div>
+        <div>
+            <input v-model.trim="trim" type="text" />
+            {{ trim }}
+        </div>
+        <div>
+            <input v-model.lazy="lazy" type="text" />
+            {{ lazy }}
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
     <script>
-        Vue.directive("rotate-on-click", function(el, binding){
-            var angle = 0;
-            el.addEventListener("click", function(){
-                angle += 90;
-                el.style.transform = `rotateZ(${angle}deg)`; 
-            })
-        });
-
         var app = new Vue({
-            el: "#app"
+            el: "#app",
+            data: {
+                name: "    Leonardo    ",
+                number: 12345,
+                trim: "   Leonardo   ",
+                lazy: ""
+            }
         });
     </script>
 </body>
