@@ -12,7 +12,17 @@
 
     <div id="app">
         <button @click="show = !show">Click me</button>
-        <transition name="myAnimation">
+        <transition 
+            name="myAnimation" 
+            @before-enter="beforeEnter"
+            @enter="onEnter" 
+            @after-enter="afterEnter"
+            @enter-cancelled="enterCancelled"
+            @before-leave="beforeLeave"
+            @leave="leave"
+            @after-leave="afterLeave"
+            @leave-cancelled="leaveCancelled"
+            >
             <p v-if="show">Hello World!</p>
         </transition>
     </div>
@@ -24,6 +34,43 @@
             el: "#app",
             data: {
                 show: true
+            },
+            methods: {
+                beforeEnter(element) {
+                    console.log("Before Enter");
+                },
+                onEnter(element, done) {
+                    console.log("Enter");
+                },
+                afterEnter(element) {
+                    console.log("After Enter");
+                },
+                enterCancelled(element) {
+                    console.log("Enter cancelled");
+                },
+                beforeLeave(element) {
+                    console.log("Before Leave");
+                },
+                leave(element, done) {
+                    console.log("Leave");
+                },
+                afterLeave(element) {
+                    console.log("After Leave");
+                },
+                leaveCancelled(element) {
+                    console.log("Leave Cancelled");
+                }
+
+                /*
+                    before-enter
+                    enter
+                    after-enter
+                    enter-cancelled
+                    before-leave
+                    leave
+                    after-leave
+                    leave-cancelled
+                */
             }
         });
     </script>
