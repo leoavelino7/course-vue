@@ -11,43 +11,22 @@
 <body>
 
     <div id="app">
-        <router-link to="/">Home</router-link>
-        <router-link to="/about/">About</router-link>
-        
-        <hr />
-
-        <router-view></router-view>
+        <div :class="{active: isActive}">Hello</div>
+        <div :class="classes">Hello World!</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-    <script src="https://unpkg.com/vue-router" ></script>
-
+    
     <script>
-
-        const Home = {
-            template: `<div>Home page</div>`
-        };
-
-        const About = {
-            template: `<div>
-                About page 
-            </div>`
-        };
-
-        const routes = [
-            { path: "/", component: Home },
-            { path: "/about/", component: About }
-        ];
-
-        const router = new VueRouter({routes});
-
-        router.beforeEach((to, from, next) => {
-            next(confirm("Deseja sair desta página?"));
-        });
-
         var app = new Vue({
             el: "#app",
-            router
+            data: {
+                isActive: false,
+                classes : {
+                    isActive: true,
+                    'text-red': false
+                }
+            }
         });
     </script>
 </body>
