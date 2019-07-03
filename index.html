@@ -11,8 +11,10 @@
 <body>
 
     <div id="app">
-        <button @click="isActive = !isActive">Toggle</button>
-        <div class="myDiv" :class="{active: isActive}">Hello World!</div>
+        <button @click="show = !show">Click me</button>
+        <transition name="myAnimation">
+            <p v-if="show">Hello World!</p>
+        </transition>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
@@ -21,19 +23,17 @@
         var app = new Vue({
             el: "#app",
             data: {
-                isActive: true
+                show: true
             }
         });
     </script>
     <style>
-        .myDiv {
-            background-color: green;
-            transition: opacity .5s ease;
-            opacity: 0;
+        .myAnimation-enter-active, .myAnimation-leave-active {
+            transition: opacity .5s;
         }
 
-        .active {
-            opacity: 1;
+        .myAnimation-enter, .myAnimation-leave-active {
+            opacity: 0;
         }
     </style>
 </body>
